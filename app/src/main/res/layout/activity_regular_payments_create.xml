@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButton_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/expense"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioButton_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/income" />
+    </RadioGroup>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/new_note"
+        android:hint="@string/payment_name"
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
+        android:minLines="1"
+        android:maxLines="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="3dp"
+        android:text="@string/frequency"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        />
+    <com.google.android.material.textfield.TextInputEditText
+        android:hint="@string/daily_weekly_monthly_every_yeah"
+        android:id="@+id/frequency"
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
+        android:minLines="1"
+        android:maxLines="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:id="@+id/add_auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_automatically"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="@string/categorytext"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/category_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_bus"
+        android:layout_gravity="start"
+        android:contentDescription="@string/category"/>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/new_amount"
+        android:hint="@string/amount1"
+        android:inputType="numberDecimal"
+        android:digits="0123456789.,"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/description_regular_payment"
+        android:hint="@string/description"
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
+        android:minLines="1"
+        android:maxLines="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create"
+        android:id="@+id/add_transaction"
+        android:textStyle="bold"/>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+

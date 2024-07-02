@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "395257478977",
+    "firebase_url": "https://apk-praca-default-rtdb.firebaseio.com",
+    "project_id": "apk-praca",
+    "storage_bucket": "apk-praca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395257478977:android:1be2a3a34eb3eb67ea2bc0",
+        "android_client_info": {
+          "package_name": "com.example.projekt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395257478977-0nj842sdmqht4s49kml82in49443atos.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHaOTPIgkjK8OXZN3XInXlYTJvFrZeXoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395257478977-0nj842sdmqht4s49kml82in49443atos.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

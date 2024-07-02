@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/Back_button"
+        android:icon="@drawable/ic_back_arrow"
+        android:title="@string/account"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/Account"
+        android:title="@string/accounts"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/Settings"
+        android:title="@string/settings"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/Generate_raports"
+        android:title="@string/generate_raports"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/regular_payments"
+        android:title="@string/regular_payment"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/budget"
+        android:title="@string/budget"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/rate_the_app"
+        android:title="@string/rate_the_app"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/Help"
+        android:title="@string/help"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/Logoutmenu"
+        android:title="@string/logoutmenu"
+        app:showAsAction="never"/>
+
+
+
+
+</menu>
