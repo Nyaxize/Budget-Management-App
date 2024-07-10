@@ -22,6 +22,15 @@ class Help : AppCompatActivity() {
         setContentView(R.layout.activity_help)
         supportActionBar?.title = "Help"
 
+        val userManualButton: Button = findViewById(R.id.userManualButton)
+        val faqButton: Button = findViewById(R.id.faqButton)
+
+        userManualButton.setOnClickListener {
+            val intent = Intent(this, UserManualActivity::class.java)
+            startActivity(intent)
+        }
+
+
         val attachImageButton: Button = findViewById(R.id.attach_file)
         attachImageButton.setOnClickListener {
             openFileChooser()

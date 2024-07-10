@@ -79,6 +79,11 @@
     <string name="choose_currency">\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020Choose currency</string>
     <string name="select_currency">\u0020\u0020\u0020Select your preferred currency</string>
     <string name="default_currency">PLN</string>
+    <string name="rejestracja_i_logowanie">•To register in the app, click the "Click to Register" button on the login screen. Enter your email address and password, then click "REGISTRATION." After successful registration, you will be redirected to the login screen.\n•To log in to the app, enter your email address and password on the login screen, then click "LOGIN".</string>
+    <string name="dodawanie_transakcji">•To add a new transaction, go to the add transaction screen. Select the type of transaction (expense or income), enter the amount, select the date, category, and optionally add a description. Click "Add" to save the transaction.</string>
+    <string name="edytowanie_i_usuwanie">•To edit a transaction, go to the transaction management view, select the transaction you want to edit, click "Edit," make the changes, and save..\n•To delete a transaction, go to the transaction management view, select the transaction you want to delete, and click "Delete".</string>
+    <string name="przegladanie_transakcji">•Transactions can be viewed in a list or calendar view. The user can sort and filter transactions by date and category.</string>
+    <string name="generowanie_raportu">•To generate a report, go to the report generation section. Select the date range for which you want to generate the report, then click \'OK.\' The report will be saved to the device\'s memory.</string>
 
     <string-array name="currency_options">
         <item>PLN</item>

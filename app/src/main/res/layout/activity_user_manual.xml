@@ -1,0 +1,160 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Wprowadzenie -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Introduction"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To view the guide, click on the topic you are interested in from the list below"
+            android:paddingBottom="16dp"/>
+
+        <!-- Rejestracja i Logowanie -->
+        <TextView
+            android:id="@+id/rejestracjaLogowanieTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:minHeight="48dp"
+            android:onClick="toggleRejestracjaLogowanie"
+            android:paddingBottom="8dp"
+            android:text="Registration and Login"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/expandableRejestracjaLogowanie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingClass">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rejestracja_i_logowanie"
+                android:paddingBottom="16dp"/>
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
+        <!-- Dodawanie Transakcji -->
+        <TextView
+            android:id="@+id/dodawanieTransakcjiTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:minHeight="48dp"
+            android:onClick="toggleDodawanieTransakcji"
+            android:paddingBottom="8dp"
+            android:text="Adding Transactions"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/expandableDodawanieTransakcji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingClass">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dodawanie_transakcji"
+                android:paddingBottom="16dp"/>
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
+        <!-- Edytowanie i Usuwanie Transakcji -->
+        <TextView
+            android:id="@+id/Edytowanie_i_Usuwanie_Transakcji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:minHeight="48dp"
+            android:onClick="toggleEdytowanieTransakcji"
+            android:paddingBottom="8dp"
+            android:text="Editing and Deleting Transactions"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/expandableEdytowanieTransakcji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingClass">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edytowanie_i_usuwanie"
+                android:paddingBottom="16dp"/>
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
+        <!-- Przeglądanie Transakcji-->
+        <TextView
+            android:id="@+id/Przegladanie_Transakcji"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:minHeight="48dp"
+            android:onClick="togglePrzegladanieTransakcji"
+            android:paddingBottom="8dp"
+            android:text="Viewing Transactions"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/expandablePrzegladanieTransakcji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingClass">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/przegladanie_transakcji"
+                android:paddingBottom="16dp"/>
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
+        <!-- Generowanie Raportów-->
+        <TextView
+            android:id="@+id/Generowanie_Raportu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:minHeight="48dp"
+            android:onClick="toggleGenerowanieRaportu"
+            android:paddingBottom="8dp"
+            android:text="Generating Reports"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/expandableGenerowanieRaportu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingClass">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/generowanie_raportu"
+                android:paddingBottom="16dp"/>
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
+        <!-- Dodaj inne sekcje tutaj -->
+
+    </LinearLayout>
+</ScrollView>

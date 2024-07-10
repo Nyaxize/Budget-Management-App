@@ -27,25 +27,24 @@
 
         <!-- Example help options -->
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="@string/user_manual"
+            android:id="@+id/userManualButton"
             style="?android:attr/buttonBarButtonStyle"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/user_manual" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="@string/faq"
+            android:id="@+id/faqButton"
             style="?android:attr/buttonBarButtonStyle"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/faq" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="@string/tutorials"
             style="?android:attr/buttonBarButtonStyle"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/tutorials" />
 
         <!-- Contact form for support -->
         <TextView
@@ -62,7 +61,8 @@
             android:layout_marginBottom="16dp"
             android:hint="@string/your_email_address"
             android:inputType="textEmailAddress"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:autofillHints="" />
 
         <!-- Problem Description -->
         <EditText

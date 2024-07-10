@@ -84,6 +84,8 @@
             android:exported="true"/>
         <activity android:name=".RecoverTransaction"
             android:exported="true"/>
+        <activity android:name=".UserManualActivity"
+            android:exported="true"/>
 
         <service
             android:name=".FirebaseMessagingService"
