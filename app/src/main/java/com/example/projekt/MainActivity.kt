@@ -41,6 +41,7 @@ import java.text.ParseException
 import java.util.Calendar
 import android.Manifest
 import android.app.AlertDialog
+import com.example.projekt.SavingsGoalsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -488,6 +489,13 @@ class MainActivity : AppCompatActivity() {
             R.id.budget -> {
                 Toast.makeText(this, "You entered Budget", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Budget::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
+            R.id.Savings -> {
+                Toast.makeText(this, "You entered Savings Goals", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, SavingsGoalsActivity::class.java)
                 startActivity(intent)
                 finish()
                 true

@@ -28,6 +28,10 @@
         android:title="@string/budget"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/Savings"
+        android:title="@string/savings_goals"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/rate_the_app"
         android:title="@string/rate_the_app"
         app:showAsAction="never"/>

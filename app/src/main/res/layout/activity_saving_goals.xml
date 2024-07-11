@@ -1,0 +1,77 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Ustawienie Celu -->
+        <TextView
+            android:id="@+id/goalNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Savings Goal"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp"
+            android:visibility="gone"/>
+
+        <EditText
+            android:id="@+id/goalName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Goal Name"
+            android:paddingBottom="8dp"
+            android:visibility="gone"/>
+
+        <EditText
+            android:id="@+id/goalAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Target Amount"
+            android:inputType="numberDecimal"
+            android:paddingBottom="8dp"
+            android:visibility="gone"/>
+
+        <EditText
+            android:id="@+id/goalDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="End Date (yyyy-mm-dd)"
+            android:inputType="date"
+            android:paddingBottom="16dp"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/saveGoalButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Goal"
+            android:onClick="saveGoal"
+            android:visibility="gone"/>
+
+        <!-- Lista Celów Oszczędnościowych -->
+        <TextView
+            android:id="@+id/savingsGoalsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Savings Goals"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="24dp"
+            android:paddingBottom="16dp"
+            android:visibility="gone"/>
+
+        <!-- Lista Celów -->
+        <LinearLayout
+            android:id="@+id/goalsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</ScrollView>
