@@ -1,5 +1,6 @@
 package com.example.projekt
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -9,6 +10,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import net.cachapa.expandablelayout.ExpandableLayout
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class AddInvestmentsActivity : AppCompatActivity() {
 
@@ -22,11 +26,14 @@ class AddInvestmentsActivity : AppCompatActivity() {
     private lateinit var cryptoAmount: EditText
     private lateinit var bondName: EditText
     private lateinit var bondAmount: EditText
+    private lateinit var investmentDate: EditText
 
     private lateinit var stocksSection: ExpandableLayout
     private lateinit var depositsSection: ExpandableLayout
     private lateinit var cryptoSection: ExpandableLayout
     private lateinit var bondsSection: ExpandableLayout
+
+    private val calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +50,7 @@ class AddInvestmentsActivity : AppCompatActivity() {
         cryptoAmount = findViewById(R.id.cryptoAmount)
         bondName = findViewById(R.id.bondName)
         bondAmount = findViewById(R.id.bondAmount)
+        investmentDate = findViewById(R.id.investmentDate)
 
         stocksSection = findViewById(R.id.stocksSection)
         depositsSection = findViewById(R.id.depositsSection)
@@ -66,6 +74,25 @@ class AddInvestmentsActivity : AppCompatActivity() {
         bondsSection.toggle()
     }
 
+    fun showDatePickerDialog(view: View) {
+        DatePickerDialog(
+            this,
+            { _, year, month, dayOfMonth ->
+                calendar.set(year, month, dayOfMonth)
+                updateDateInView()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).show()
+    }
+
+    private fun updateDateInView() {
+        val format = "yyyy-MM-dd"
+        val sdf = SimpleDateFormat(format, Locale.US)
+        investmentDate.setText(sdf.format(calendar.time))
+    }
+
     fun saveInvestment(view: View) {
         val stockNameText = stockName.text.toString()
         val stockPriceText = stockPrice.text.toString()
@@ -76,6 +103,7 @@ class AddInvestmentsActivity : AppCompatActivity() {
         val cryptoAmountText = cryptoAmount.text.toString()
         val bondNameText = bondName.text.toString()
         val bondAmountText = bondAmount.text.toString()
+        val investmentDateText = investmentDate.text.toString()
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val investmentId = database.child(userId).push().key
@@ -85,22 +113,27 @@ class AddInvestmentsActivity : AppCompatActivity() {
                 stockNameText.isNotEmpty() -> Investment(
                     type = "Stock",
                     details = "$stockNameText, $stockPriceText, $stockQuantityText",
-                    userId = userId
+                    userId = userId,
+                    date = investmentDateText
+
                 )
                 depositBankText.isNotEmpty() -> Investment(
                     type = "Deposit",
                     details = "$depositBankText, $depositAmountText",
-                    userId = userId
+                    userId = userId,
+                    date = investmentDateText
                 )
                 cryptoWalletText.isNotEmpty() -> Investment(
                     type = "Cryptocurrency",
                     details = "$cryptoWalletText, $cryptoAmountText",
-                    userId = userId
+                    userId = userId,
+                    date = investmentDateText
                 )
                 bondNameText.isNotEmpty() -> Investment(
                     type = "Bond",
                     details = "$bondNameText, $bondAmountText",
-                    userId = userId
+                    userId = userId,
+                    date = investmentDateText
                 )
                 else -> null
             }

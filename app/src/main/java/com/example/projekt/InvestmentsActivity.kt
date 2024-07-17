@@ -12,21 +12,20 @@ class InvestmentsActivity : AppCompatActivity() {
 
     private lateinit var investmentsLayout: LinearLayout
     private lateinit var database: DatabaseReference
-    private lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_investments)
 
         investmentsLayout = findViewById(R.id.investmentsLayout)
-        userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        database = FirebaseDatabase.getInstance().reference.child("investments").child(userId)
+        database = FirebaseDatabase.getInstance().reference.child("investments")
 
         loadInvestments()
     }
 
     private fun loadInvestments() {
-        database.addValueEventListener(object : ValueEventListener {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        database.child(userId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 investmentsLayout.removeAllViews()
                 for (investmentSnapshot in snapshot.children) {
@@ -38,14 +37,14 @@ class InvestmentsActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Obsługa błędów
+                // Obsługa błędu
             }
         })
     }
 
     private fun addInvestmentView(investment: Investment) {
         val investmentView = TextView(this).apply {
-            text = "${investment.type}: ${investment.details}"
+            text = "${investment.date} - ${investment.type}: ${investment.details}"
             textSize = 16f
             setPadding(0, 8, 0, 8)
         }

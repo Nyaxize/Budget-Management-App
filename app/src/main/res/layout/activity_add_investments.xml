@@ -16,6 +16,24 @@
             android:textStyle="bold"
             android:paddingBottom="16dp"/>
 
+        <TextView
+            android:id="@+id/dateHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Investment Date"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:onClick="showDatePickerDialog" />
+
+        <EditText
+            android:id="@+id/investmentDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Date"
+            android:focusable="false"
+            android:clickable="true"
+            android:onClick="showDatePickerDialog" />
+
         <!-- Sekcja dla akcji -->
         <TextView
             android:id="@+id/stocksHeader"
