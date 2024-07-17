@@ -88,6 +88,10 @@
             android:exported="true"/>
         <activity android:name=".SavingsGoalsActivity"
             android:exported="true"/>
+        <activity android:name=".AddInvestmentsActivity"
+            android:exported="true"/>
+        <activity android:name=".InvestmentsActivity"
+            android:exported="true"/>
 
         <service
             android:name=".FirebaseMessagingService"

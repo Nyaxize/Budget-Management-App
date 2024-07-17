@@ -85,6 +85,7 @@
     <string name="przegladanie_transakcji">•Transactions can be viewed in a list or calendar view. The user can sort and filter transactions by date and category.</string>
     <string name="generowanie_raportu">•To generate a report, go to the report generation section. Select the date range for which you want to generate the report, then click \'OK.\' The report will be saved to the device\'s memory.</string>
     <string name="savings_goals">Savings Goals</string>
+    <string name="investments">Investments</string>
 
     <string-array name="currency_options">
         <item>PLN</item>

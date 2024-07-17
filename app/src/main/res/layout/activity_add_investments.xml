@@ -1,0 +1,198 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Investment"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp"/>
+
+        <!-- Sekcja dla akcji -->
+        <TextView
+            android:id="@+id/stocksHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stocks"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="toggleStocksSection"/>
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/stocksSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:duration="300">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/stockName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Stock Name"
+                    android:paddingBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/stockPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Stock Price"
+                    android:inputType="numberDecimal"
+                    android:paddingBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/stockQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Stock Quantity"
+                    android:inputType="number"
+                    android:paddingBottom="16dp"/>
+
+            </LinearLayout>
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
+        <!-- Sekcja dla lokat -->
+        <TextView
+            android:id="@+id/depositsHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Deposits"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="toggleDepositsSection"/>
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/depositsSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:duration="300">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/depositBank"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Bank Name"
+                    android:paddingBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/depositAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Deposit Amount"
+                    android:inputType="numberDecimal"
+                    android:paddingBottom="16dp"/>
+
+            </LinearLayout>
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
+        <!-- Sekcja dla kryptowalut -->
+        <TextView
+            android:id="@+id/cryptoHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cryptocurrency"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="toggleCryptoSection"/>
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/cryptoSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:duration="300">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/cryptoWallet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Wallet Name"
+                    android:paddingBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/cryptoAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Cryptocurrency Amount"
+                    android:inputType="numberDecimal"
+                    android:paddingBottom="16dp"/>
+
+            </LinearLayout>
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
+        <!-- Sekcja dla obligacji -->
+        <TextView
+            android:id="@+id/bondsHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bonds"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="toggleBondsSection"/>
+
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/bondsSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:duration="300">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/bondName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Bond Name"
+                    android:paddingBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/bondAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Bond Amount"
+                    android:inputType="numberDecimal"
+                    android:paddingBottom="16dp"/>
+
+            </LinearLayout>
+        </net.cachapa.expandablelayout.ExpandableLayout>
+
+        <!-- Przycisk do zapisania inwestycji -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Investment"
+            android:onClick="saveInvestment"/>
+    </LinearLayout>
+</ScrollView>

@@ -507,6 +507,13 @@ class MainActivity : AppCompatActivity() {
                 finish()
                 true
             }
+            R.id.Invest -> {
+                Toast.makeText(this, "You entered Investments", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, InvestmentsActivity::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
             R.id.Generate_raports -> {
                 Toast.makeText(this, "You generated raport", Toast.LENGTH_SHORT).show()
                 //buildTransactionRaport()
