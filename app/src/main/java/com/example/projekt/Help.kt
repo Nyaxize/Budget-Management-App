@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class Help : AppCompatActivity() {
 
@@ -38,7 +40,37 @@ class Help : AppCompatActivity() {
 
         val sendButton: Button = findViewById(R.id.send_button)
         sendButton.setOnClickListener {
-            // Tutaj dodaj logikę wysyłania danych, w tym załączonego obrazu
+            val emailEditText: EditText = findViewById(R.id.emailEditText) //
+            val descriptionEditText: EditText = findViewById(R.id.descriptionEditText)
+
+            val email = emailEditText.text.toString().trim()
+            val description = descriptionEditText.text.toString().trim()
+
+            if (email.isEmpty() || description.isEmpty()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Opcjonalnie: Wgraj obraz i uzyskaj jego URL
+            val imageUrl = "" // Zastąp odpowiednim URL, jeśli przesyłasz obraz
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val userId = currentUser?.uid ?: "unknown_user"
+
+            val helpRequest = HelpRequest(email, description, imageUrl, userId)
+
+            // Zapisywanie do Firebase Database
+            val database = FirebaseDatabase.getInstance().getReference("help_requests")
+            val requestId = database.push().key
+
+            if (requestId != null) {
+                database.child(requestId).setValue(helpRequest).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Help request sent successfully", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Failed to send help request", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
 

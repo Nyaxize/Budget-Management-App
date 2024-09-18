@@ -36,10 +36,6 @@ class Settings : AppCompatActivity() {
             replace(R.id.settings_fragment_container, SettingsFragment())
         }
 
-        val attachImageButton: Button = findViewById(R.id.buttonAddImage)
-        attachImageButton.setOnClickListener {
-            openFileChooser()
-        }
 
         switchTheme = findViewById(R.id.switch_theme)
 

@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <permission
         android:name="com.example.projekt.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
@@ -91,6 +93,10 @@
         <activity android:name=".AddInvestmentsActivity"
             android:exported="true"/>
         <activity android:name=".InvestmentsActivity"
+            android:exported="true"/>
+        <activity android:name=".BudgetActivity"
+            android:exported="true"/>
+        <activity android:name=".AddBudgetActivity"
             android:exported="true"/>
 
         <service

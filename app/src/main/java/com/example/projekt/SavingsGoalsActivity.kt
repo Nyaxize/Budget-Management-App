@@ -1,8 +1,11 @@
 package com.example.projekt
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -19,6 +22,7 @@ class SavingsGoalsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_saving_goals)
+        supportActionBar?.title = "Savings Goal"
 
         // Inicjalizacja Firebase Authentication
         auth = FirebaseAuth.getInstance()
@@ -188,5 +192,35 @@ class SavingsGoalsActivity : AppCompatActivity() {
         findViewById<Button>(R.id.saveGoalButton).visibility = View.VISIBLE
         findViewById<TextView>(R.id.savingsGoalsLabel).visibility = View.VISIBLE
         findViewById<LinearLayout>(R.id.goalsLayout).visibility = View.VISIBLE
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.Back_button -> {
+                Toast.makeText(this, "You Backed to Main Menu", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
+            R.id.Account -> {
+                Toast.makeText(this, "You entered Account", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, AccountManagement::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
+
+            R.id.Settings -> {
+                // Zrealizuj akcję dla item2
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

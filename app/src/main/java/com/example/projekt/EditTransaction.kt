@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.GridView
 import android.widget.ImageView
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.time.LocalDate
@@ -29,6 +30,8 @@ class EditTransaction : AppCompatActivity() {
     private var selectedCategory: NewCategory? = null
     private var transactionId: String? = null
     private lateinit var ref: DatabaseReference
+    private lateinit var expenseType: RadioButton
+    private lateinit var incomeType: RadioButton
 
     private val categories = listOf(
         NewCategory("Food", R.drawable.ic_burger),
@@ -52,6 +55,8 @@ class EditTransaction : AppCompatActivity() {
         descriptionEditText = findViewById(R.id.new_note)
         dateEditText = findViewById(R.id.new_date)
         categoryIconImageView = findViewById(R.id.category_icon)
+        expenseType = findViewById(R.id.radioButton_expense)
+        incomeType = findViewById(R.id.radioButton_income)
 
         // Przyjęcie danych transakcji do edycji
         transactionId = intent.getStringExtra("TRANSACTION_ID")
@@ -172,10 +177,11 @@ class EditTransaction : AppCompatActivity() {
             Toast.makeText(this, "Please select a category.", Toast.LENGTH_SHORT).show()
             return
         }
+        val type = if (incomeType.isChecked) "income" else "expense"
 
         transactionId?.let { nonNullTransactionId ->
             val updatedTransaction =
-                Transaction(amount, category, date, description, userId, nonNullTransactionId)
+                Transaction(amount, category, date, description, userId, nonNullTransactionId, type)
             ref.child(nonNullTransactionId).setValue(updatedTransaction)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Transaction updated", Toast.LENGTH_SHORT).show()

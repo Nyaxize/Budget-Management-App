@@ -35,15 +35,16 @@ import java.time.temporal.TemporalAdjusters
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.preference.PreferenceManager
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import java.text.ParseException
 import java.util.Calendar
 import android.Manifest
 import android.app.AlertDialog
-import com.example.projekt.SavingsGoalsActivity
+import android.content.SharedPreferences
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
 
     companion object {
         private const val TAG = "MainActivity"
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var removetransaction: Button
     private lateinit var recovertransaction: Button
+    private lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,6 +78,9 @@ class MainActivity : AppCompatActivity() {
         textView = findViewById(R.id.user_details)
         removetransaction= findViewById(R.id.remove_transaction)
         recovertransaction = findViewById(R.id.history)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+
         val currentUser = auth.currentUser
 
         if (currentUser != null) {
@@ -135,6 +140,20 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+    // Implementacja metody nasłuchującej na zmiany w preferencjach
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        if (key == "currency_preference") {
+            // Odśwież wykres po zmianie waluty
+            loadChartDataForToday(pieChart)
+        }
+    }
+
+    // Pobierz aktualnie wybraną walutę z preferencji
+    private fun getSelectedCurrency(): String {
+        return sharedPreferences.getString("currency_preference", "PLN") ?: "PLN"
+    }
+
     // Declare the launcher at the top of your Activity/Fragment:
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
@@ -176,7 +195,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun createNotificationChannel() {
         val channelId = getString(R.string.default_notification_channel_id)
@@ -292,6 +310,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun updateChart(pieChart: PieChart, entries: List<PieEntry>, totalSum: Double) {
+        val selectedCurrency = getSelectedCurrency() // Pobierz wybraną walutę
         val dataSet = PieDataSet(entries, "Kategorie Wydatków")
         pieChart.apply {
             // Ustawienia wyglądu wykresu
@@ -312,7 +331,7 @@ class MainActivity : AppCompatActivity() {
 
             description.isEnabled = false
             legend.isEnabled = false // Wyłącz domyślną legendę
-            centerText = " PLN${String.format("%.2f", totalSum)}" // Ustawienie tekst środkowy
+            centerText = "$selectedCurrency${String.format("%.2f", totalSum)}" // Ustawienie tekst środkowy
         }
 
         dataSet.colors = ColorTemplate.createColors(ColorTemplate.MATERIAL_COLORS)
@@ -452,7 +471,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
@@ -488,7 +506,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.budget -> {
                 Toast.makeText(this, "You entered Budget", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, Budget::class.java)
+                val intent = Intent(this, BudgetActivity::class.java)
                 startActivity(intent)
                 finish()
                 true
@@ -517,7 +535,7 @@ class MainActivity : AppCompatActivity() {
             R.id.Generate_raports -> {
                 Toast.makeText(this, "You generated raport", Toast.LENGTH_SHORT).show()
                 //buildTransactionRaport()
-                    showDatePickerDialog()
+                showDatePickerDialog()
                 true
             }
             R.id.Help -> {
@@ -537,9 +555,14 @@ class MainActivity : AppCompatActivity() {
 
             else -> super.onOptionsItemSelected(item)
         }
-        }
-
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
+    }
+}
+
 data class Transaction(
     val amount: Double = 0.0,
     val category: String = "",
@@ -549,6 +572,7 @@ data class Transaction(
     val id: String = "",
     val type: String = ""
 )
+
 data class rubishBin(
     val amount: Double = 0.0,
     val category: String = "",
@@ -558,7 +582,3 @@ data class rubishBin(
     val id: String = "",
     val type: String = ""
 )
-
-
-
-

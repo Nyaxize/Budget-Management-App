@@ -3,6 +3,7 @@ package com.example.projekt
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.Menu
@@ -15,9 +16,15 @@ import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import kotlin.math.absoluteValue
@@ -36,11 +43,13 @@ class NewTransaction : AppCompatActivity() {
     private val categories = listOf(
         NewCategory("Food", R.drawable.ic_burger),
         NewCategory("Transport", R.drawable.ic_bus),
+        NewCategory("Income", R.drawable.ic_money),
         // Dodaj więcej kategorii tutaj
     )
     val categoryImageToNameMap = mapOf(
         R.drawable.ic_burger to "Food",
         R.drawable.ic_bus to "Transport",
+        R.drawable.ic_money to "Income",
         // Dodaj więcej przypisań tutaj
     )
 
@@ -97,6 +106,68 @@ class NewTransaction : AppCompatActivity() {
         }
         bottomSheetDialog.show()
     }
+    private fun checkBudgetLimits(transaction: Transaction) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val budgetsRef = FirebaseDatabase.getInstance().getReference("budgets").child(userId)
+
+        budgetsRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var budgetFound = false
+
+                for (budgetSnapshot in dataSnapshot.children) {
+                    val budget = budgetSnapshot.getValue(Budgets::class.java)
+                    if (budget != null && budget.category.equals(transaction.category, ignoreCase = true)) {
+                        budgetFound = true
+
+                        // Pobierz wszystkie transakcje dla danej kategorii i użytkownika
+                        val transactionsRef = FirebaseDatabase.getInstance().getReference("transactions")
+                        transactionsRef.orderByChild("userId").equalTo(userId)
+                            .addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(transactionSnapshot: DataSnapshot) {
+                                    var totalAmount = 0.0
+
+                                    for (transactionSnap in transactionSnapshot.children) {
+                                        val trans = transactionSnap.getValue(Transaction::class.java)
+                                        if (trans != null && trans.category == transaction.category) {
+                                            totalAmount += trans.amount
+                                        }
+                                    }
+
+                                    // Sprawdź, czy całkowita kwota przekracza limity
+                                    if (totalAmount > budget.monthlyLimit) {
+                                        sendNotification(
+                                            "Monthly budget limit exceeded",
+                                            "Your monthly limit for ${budget.category} has been exceeded."
+                                        )
+                                    }
+
+                                    if (totalAmount > budget.yearlyLimit) {
+                                        sendNotification(
+                                            "Yearly budget limit exceeded",
+                                            "Your yearly limit for ${budget.category} has been exceeded."
+                                        )
+                                    }
+                                }
+
+                                override fun onCancelled(databaseError: DatabaseError) {
+                                    // Obsługa błędu
+                                }
+                            })
+                    }
+                }
+
+                if (!budgetFound) {
+                    Toast.makeText(this@NewTransaction, "No budget found for category ${transaction.category}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Obsługa błędu
+            }
+        })
+    }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
@@ -135,8 +206,6 @@ class NewTransaction : AppCompatActivity() {
         val date = dateEditText.text.toString()
         val currentUser = FirebaseAuth.getInstance().currentUser
 
-
-
         if (currentUser == null) {
             Toast.makeText(this, "You have to log in.", Toast.LENGTH_LONG).show()
             return
@@ -156,18 +225,39 @@ class NewTransaction : AppCompatActivity() {
         }
         val type = if (incomeType.isChecked) "income" else "expense"
 
-
         val ref = database.getReference("transactions")
         val transactionId = ref.push().key ?: return
-        val transaction = Transaction(amount, category, date, description, userId, transactionId,type)
+        val transaction = Transaction(amount, category, date, description, userId, transactionId, type)
         ref.child(transactionId).setValue(transaction)
             .addOnSuccessListener {
                 Toast.makeText(this, "New transaction added", Toast.LENGTH_SHORT).show()
+                checkBudgetLimits(transaction)
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to add new transaction", Toast.LENGTH_SHORT).show()
             }
     }
+
+    private fun sendNotification(title: String, content: String) {
+        val builder = NotificationCompat.Builder(this, getString(R.string.default_notification_channel_id))
+            .setSmallIcon(R.drawable.ic_notification)
+            .setContentTitle(title)
+            .setContentText(content)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+            with(NotificationManagerCompat.from(this)) {
+                notify(System.currentTimeMillis().toInt(), builder.build())
+            }
+        } else {
+            Toast.makeText(this, "Permission to post notifications is not granted", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
+
+
 
 
 }
