@@ -8,14 +8,6 @@
         android:title="@string/account"
         app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/Account"
-        android:title="@string/accounts"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/Settings"
-        android:title="@string/settings"
-        app:showAsAction="never"/>
-
     <item android:id="@+id/Generate_raports"
         android:title="@string/generate_raports"
         app:showAsAction="never"/>
@@ -42,6 +34,10 @@
 
     <item android:id="@+id/Help"
         android:title="@string/help"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/Settings"
+        android:title="@string/settings"
         app:showAsAction="never"/>
 
     <item android:id="@+id/Logoutmenu"

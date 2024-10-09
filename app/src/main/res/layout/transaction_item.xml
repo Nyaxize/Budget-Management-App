@@ -35,7 +35,7 @@
             android:id="@+id/textViewDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:text="@string/description" />
 
         <TextView
@@ -44,12 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.7"
             android:text="@string/date" />
-        <TextView
-            android:id="@+id/textViewType"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/type" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -71,6 +66,14 @@
             android:layout_height="wrap_content"
             android:text="@string/edit"
             style="?android:attr/buttonBarButtonStyle"/>
+        <TextView
+            android:id="@+id/textViewType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:layout_marginRight="30dp"
+            android:gravity="end"
+            android:text="@string/type" />
     </LinearLayout>
 
 
