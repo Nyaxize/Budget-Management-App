@@ -2,22 +2,19 @@ package com.example.projekt
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
 import androidx.preference.PreferenceFragmentCompat
+import com.example.projekt.Activities.MainActivity
+import com.example.projekt.Login_SingUP.Login
+import com.example.projekt.RegularPayments.RegularPayments
 import com.google.firebase.auth.FirebaseAuth
 
 class Settings : AppCompatActivity() {
@@ -36,10 +33,6 @@ class Settings : AppCompatActivity() {
             replace(R.id.settings_fragment_container, SettingsFragment())
         }
 
-        val attachImageButton: Button = findViewById(R.id.buttonAddImage)
-        attachImageButton.setOnClickListener {
-            openFileChooser()
-        }
 
         switchTheme = findViewById(R.id.switch_theme)
 
@@ -85,10 +78,6 @@ class Settings : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-                true
-            }
-            R.id.Account -> {
-                Toast.makeText(this, "You are already here", Toast.LENGTH_SHORT).show()
                 true
             }
             R.id.regular_payments -> {

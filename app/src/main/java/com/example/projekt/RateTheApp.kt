@@ -10,6 +10,8 @@ import android.widget.EditText
 import android.widget.RatingBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.projekt.Activities.MainActivity
+import com.example.projekt.Login_SingUP.Login
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -79,10 +81,6 @@ class RateTheApp : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-                true
-            }
-            R.id.Account -> {
-                Toast.makeText(this, "Your already here", Toast.LENGTH_SHORT).show()
                 true
             }
 

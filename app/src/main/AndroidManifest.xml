@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <permission
         android:name="com.example.projekt.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
@@ -38,11 +40,11 @@
             android:value="@string/default_notification_channel_id" />
 
         <activity
-            android:name=".Registration"
+            android:name=".Login_SingUP.Registration"
             android:theme="@style/Theme.Material3.Dark.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".Login_SingUP.Login"
             android:theme="@style/Theme.Material3.Dark.NoActionBar"
             android:exported="true">
             <intent-filter>
@@ -52,49 +54,53 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
         </activity>
         <activity
             android:name=".AccountManagement"
             android:exported="true" />
         <activity
-            android:name=".NewTransaction"
+            android:name=".Operations.NewTransaction"
             android:exported="true"/>
         <activity
-            android:name=".RemoveTransaction"
+            android:name=".Operations.RemoveTransaction"
             android:exported="true"/>
         <activity
-            android:name=".EditTransaction"
+            android:name=".Operations.EditTransaction"
             android:exported="true"/>
         <activity
-            android:name=".TransactionAdapter"
+            android:name=".Operations.TransactionAdapter"
             android:exported="true"/>
-        <activity android:name=".RegularPayments"
+        <activity android:name=".RegularPayments.RegularPayments"
             android:exported="true"/>
-        <activity android:name=".RegularPaymentsCreate"
+        <activity android:name=".RegularPayments.RegularPaymentsCreate"
             android:exported="true"/>
         <activity android:name=".Settings"
             android:exported="true"/>
-        <activity android:name=".Help"
+        <activity android:name=".Help.Help"
             android:exported="true"/>
-        <activity android:name=".Budget"
+        <activity android:name=".Budgets.Budget"
             android:exported="true"/>
         <activity android:name=".RateTheApp"
             android:exported="true"/>
-        <activity android:name=".RecoverTransaction"
+        <activity android:name=".Operations.RecoverTransaction"
             android:exported="true"/>
-        <activity android:name=".UserManualActivity"
+        <activity android:name=".Activities.UserManualActivity"
             android:exported="true"/>
-        <activity android:name=".SavingsGoalsActivity"
+        <activity android:name=".Activities.SavingsGoalsActivity"
             android:exported="true"/>
-        <activity android:name=".AddInvestmentsActivity"
+        <activity android:name=".Activities.AddInvestmentsActivity"
             android:exported="true"/>
-        <activity android:name=".InvestmentsActivity"
+        <activity android:name=".Activities.InvestmentsActivity"
+            android:exported="true"/>
+        <activity android:name=".Budgets.BudgetActivity"
+            android:exported="true"/>
+        <activity android:name=".Activities.AddBudgetActivity"
             android:exported="true"/>
 
         <service
-            android:name=".FirebaseMessagingService"
+            android:name=".Notifications.FirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

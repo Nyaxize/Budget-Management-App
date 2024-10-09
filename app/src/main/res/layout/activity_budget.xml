@@ -1,80 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".Budgets.BudgetActivity">
 
-    <!-- Pole do wpisania kwoty -->
-    <EditText
-        android:id="@+id/editTextAmount"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Amount"
-        android:inputType="numberDecimal"
-        android:minHeight="48dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <!-- Przypomnienie (Switch) -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/budgetsLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Reminder"
-            android:textSize="18sp"/>
+            android:orientation="vertical"/>
+    </ScrollView>
 
-        <Switch
-            android:id="@+id/switchReminder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            tools:ignore="TouchTargetSizeCheck" />
-
-    </LinearLayout>
-
-    <!-- Przełącznik (Switch) dla Monthly/Yearly -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Monthly"
-            android:textSize="18sp"
-            android:textAlignment="viewStart"/>
-
-        <Switch
-            android:id="@+id/switchPeriod"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:ignore="TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Yearly"
-            android:textSize="18sp"
-            android:textAlignment="viewEnd"/>
-
-    </LinearLayout>
-
-    <!-- Przycisk Zatwierdź -->
     <Button
-        android:id="@+id/buttonSubmit"
+        android:id="@+id/addNewBudgetButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:layout_marginTop="32dp"/>
-
+        android:text="Add New Budget"/>
 </LinearLayout>

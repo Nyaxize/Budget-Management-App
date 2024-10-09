@@ -48,24 +48,6 @@
             android:minHeight="48dp"
             android:gravity="center_horizontal"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add_new_category"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:gravity="center_horizontal"/>
-
-        <Button
-            android:id="@+id/buttonAddImage"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/plus"
-            android:textSize="25sp" />
-
         <FrameLayout
             android:id="@+id/settings_fragment_container"
             android:layout_width="match_parent"
