@@ -8,7 +8,7 @@
 <h2><b>Installation</b></h2>
 <ol> <li>Clone this repository: <pre><code>git clone https://github.com/your-username/budget-management-app.git cd budget-management-app</code></pre> </li> <li>Open the project in Android Studio.</li> <li>Configure Firebase: <ul> <li>Add your <code>google-services.json</code> file in the <code>app/</code> directory.</li> <li>Set up Firebase Authentication and Realtime Database in your Firebase console.</li> </ul> </li> <li>Build and run the app on an Android device or emulator.</li> </ol>
 <h2><b>Screenshots</b></h2>
-<h3>Home Screen</h3> <i>Example screenshot here</i> <h3>Transaction Management</h3> <i>Example screenshot here</i> 
+<h3>Home Screen</h3> <i><img src="docs/main_menu.png" alt="Main Menu" width="300"></i> <h3>Transaction Management</h3> <i><img src="docs/add_trans.png" alt="Add Transaciton" width="300"> <img src="docs/manage_trans.png" alt="Manage Transaction" width="300"></i> 
 <h2><b>How It Works</b></h2>
 <ol> <li><b>User Authentication</b>: Users sign up or log in using email authentication.</li> <li><b>Transaction Tracking</b>: Record and categorize transactions with ease.</li> <li><b>Budget Alerts</b>: Notifications are sent when 90% of the budget is used or when limits are exceeded.</li> <li><b>Data Synchronization</b>: All data is stored and synchronized in real-time using Firebase.</li> <li><b>Reports</b>: Generate and download detailed spending reports.</li> </ol>
 <h3>Acknowledgments</h3>
